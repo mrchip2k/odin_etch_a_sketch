@@ -34,6 +34,7 @@ const grid = document.querySelector("#grid");
 let gridResH = 16;
 let gridResV = 16;
 const rows = createRows();
+gridResH = gridResV = prompt("Enter a grid resolution:", 16);
 drawGrid(gridResH, gridResV)
 
 let pixels = document.querySelectorAll("#grid div div");
