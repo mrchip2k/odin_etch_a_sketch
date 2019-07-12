@@ -1,73 +1,87 @@
-/* http://meyerweb.com/eric/tools/css/reset/ 
-   v2.0 | 20110126
-   License: none (public domain)
-*/
-
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
+* {
 	margin: 0;
 	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
+	border: none;
+	line-height: 1em;
+
+	font-size: 20px;
+	font-family: 'Work Sans', sans-serif;
 }
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-	display: block;
-}
+
 body {
-	line-height: 1;
-}
-ol, ul {
-	list-style: none;
-}
-blockquote, q {
-	quotes: none;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
-}
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
+	background-color: #ccd;
 }
 
-/* ============================== ^ CSS RESET ^ ============================== */
-
-#grid {
-  position: relative;
-  text-align: center;
-  top: 50px;
+#background-img {
+	position: absolute;
+	z-index: -10;
+	opacity: 0.5;
+	height: 100%;
+	width: 100%;
 }
 
-#grid div{
-  display: block;
-  //background-color: rgba(182, 45, 45, 0.151);
-  //border: 1px dotted green;
-  height: 30px;
-  margin-bottom: 2px;
+
+h1 {
+	padding: 40px;
+	text-align: center;
+	font-size: 80px;
+	font-weight: bold;
+	color: #222;
+	background-color: #2224;
+	background-image: linear-gradient(#fff2, #fff1);
+	text-shadow: 2px 2px 10px #0006; 
+	box-shadow: 0 0 4px 0 #0003;
 }
 
-#grid div div{
-  display: inline;
-  background-color: black;
-  padding: 15px;
-  border:none;
-  margin-right: 2px;
-  font-size: 0;
+
+#ui {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap-reverse;
+	align-items: center;
+
+}
+
+#settings {
+	flex-grow: 0;
+	background-color: #c229;
+	width: 250px;
+
+	padding: auto 0;
+}
+
+
+#drawing-board {
+	box-shadow: 0 0 4px 0 #0008;
+	width: 300px;
+	height: 300px;
+
+	background-color: lightgreen;
+	margin: 25px auto;
+
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: center;
+}
+
+.board-row {
+	flex-grow: 1;
+
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: center;
+}
+
+.board-cell {
+	background-color: #222;
+
+	flex-grow: 1;
+
+	border: 1px #0004 solid;
+}
+
+.painted {
+	background-color: #2b2;
 }
