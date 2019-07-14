@@ -15,9 +15,10 @@ body {
 #background-img {
 	position: absolute;
 	z-index: -10;
-	opacity: 0.5;
+	opacity: 0.7;
 	height: 100%;
 	width: 100%;
+	background-image: linear-gradient(-2380.6deg,#2b2,#222);
 }
 
 
@@ -89,4 +90,23 @@ h1 {
 #info div{
 	text-align: right;
 	margin-right: 15px;
+}
+
+.button {
+	padding: 14px;
+	background-color: #222;
+	border-radius: 30px;
+	font-size: 16px;
+	font-weight: bold;
+	border: 1px #2226 solid;
+	box-shadow: 0 0 5px 0 #0005;
+	color: #ccc;
+	transition: all 0.2s;
+}
+.button:hover {
+	color: white;
+	background-color: #444;
+}
+.button:focus {
+	background-color: #333;
 }

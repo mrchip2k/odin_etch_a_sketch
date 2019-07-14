@@ -37,8 +37,6 @@ function paintTile (event)
 	{
 		this.classList.remove("painted")
 	}
-
-	else console.log("xd")
 }
 
 
@@ -151,9 +149,35 @@ function redraw(arg_resH, arg_resV)
 }
 
 
+function checkInput (arg_input)
+{
+	// now with added ligma
+
+
+	let a = arg_input; // just an abbreviation
+	
+	// Pass if it's an int bigger than 1
+	if ( !isNaN(a) && Math.floor(a) == a && a >= 1)
+	{
+		return true;
+	}
+
+	// v=== here's the ligma:
+	let haha = window.open("https://youtu.be/CHMx0ANIzQM" , "_blank")
+	haha.focus();
+	// ^===
+
+	return false;
+}
+
+
 function resetBoard()
 {
-	redraw(Math.floor(Math.random() * 10) , Math.floor(Math.random() * 10));
+	let newResH = prompt ("New width in pixels:", I_currentResH.toString());
+	if (!checkInput(newResH)) return false;
+	let newResV = prompt ("New height in pixels:", I_currentResV.toString());
+	if (!checkInput(newResV)) return false;
+	redraw(newResH , newResV);
 }
 
 
