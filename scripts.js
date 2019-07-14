@@ -157,9 +157,13 @@ function checkInput (arg_input)
 	let a = arg_input; // just an abbreviation
 	
 	// Pass if it's an int bigger than 1
-	if ( !isNaN(a) && Math.floor(a) == a && a >= 1)
+	if (  !isNaN(a) && Math.floor(a) == a && a >= 1  )
 	{
 		return true;
+	}
+	else if (a === null)
+	{
+		return false;
 	}
 
 	// v=== here's the ligma:
