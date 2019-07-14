@@ -17,6 +17,30 @@ Variable naming:
 
 
 const E_DRAWING_BOARD = document.querySelector("#drawing-board");
+const E_RESET_BUTTON = document.querySelector('#reset-btn');
+
+let I_currentResH;
+let I_currentResV;
+
+let isDrawing = false;
+let isDeleting = false;
+
+
+
+function paintTile (event)
+{
+	if (isDrawing || (event.button === 0 && event.buttons === 1))
+	{
+		this.classList.add("painted")
+	}
+	else if (isDeleting || (event.button === 2 && event.buttons === 2))
+	{
+		this.classList.remove("painted")
+	}
+
+	else console.log("xd")
+}
+
 
 
 function createGrid(arg_resH, arg_resV)
@@ -36,6 +60,8 @@ function createGrid(arg_resH, arg_resV)
 			// console.log('Column: ' + i_Columns);
 			currentColumn = document.createElement ('div');
 			currentColumn.classList.add ('board-cell');
+			currentColumn.addEventListener("mouseenter", paintTile)
+			currentColumn.addEventListener("mousedown", paintTile)
 			currentRow.appendChild (currentColumn);
 		}
 		grid.appendChild (currentRow);
@@ -46,10 +72,132 @@ function createGrid(arg_resH, arg_resV)
 }
 
 
+function getOuterHeight (arg_element)
+{
+	var styles = window.getComputedStyle(arg_element);
+	var margin = parseFloat(styles['marginTop']) + parseFloat(styles['marginBottom']);
+  
+	return arg_element.offsetHeight + margin;
+}
+function getOuterWidth (arg_element)
+{
+	var styles = window.getComputedStyle(arg_element);
+	var margin = parseFloat(styles['marginLeft']) + parseFloat(styles['marginRight']);
+  
+	return arg_element.offsetWidth + margin;
+}
+
+function deleteElements(arg_parent)
+{
+	while (arg_parent.lastChild) {
+		arg_parent.removeChild(arg_parent.lastChild);
+	}
+}
 
 
+function resizeBoard()
+{
+/* 	const ratio = arg_resH / arg_resV;
 
-E_DRAWING_BOARD.appendChild (createGrid(16,16));
+	const width = E_DRAWING_BOARD.offsetWidth;
+	let newHeight = width * ratio;
+
+	E_DRAWING_BOARD.setAttribute ('style', `height:${newHeight}px`) */
+
+	let resultH;
+	let resultV;
+
+	const maxAvailableWidth = window.innerWidth / 100 * 70;
+	const maxAvailableHeight = window.innerHeight - 220;
+	let maxLength;
+	
+	if (maxAvailableHeight < maxAvailableWidth)
+	{
+		maxLength = maxAvailableHeight;
+	} 
+	else 
+	{
+		maxLength = maxAvailableWidth;
+	}
+
+	if (I_currentResH < I_currentResV)
+	{
+		resultV = maxLength;
+
+		resultH = maxLength / I_currentResV * I_currentResH;
+	}
+	else
+	{
+		resultH = maxLength;
+
+		resultV = maxLength / I_currentResH * I_currentResV;
+	}
+
+	E_DRAWING_BOARD.style.width = resultH + 'px';
+	E_DRAWING_BOARD.style.height = resultV + 'px';
+}
+
+
+function redraw(arg_resH, arg_resV)
+{
+	I_currentResH = arg_resH;
+	I_currentResV = arg_resV;
+	
+	deleteElements(E_DRAWING_BOARD);
+	
+	E_DRAWING_BOARD.appendChild (createGrid(arg_resH,arg_resV));
+
+	resizeBoard();
+}
+
+
+function resetBoard()
+{
+	redraw(Math.floor(Math.random() * 10) , Math.floor(Math.random() * 10));
+}
+
+
+function setDrawing(event)
+{
+	event.preventDefault();
+
+	if (event.button == 0)
+	{
+		isDrawing = true;
+		isDeleting = false;
+	}
+	else if (event.button == 2)
+	{
+		isDrawing = false;
+		isDeleting = true;
+	}
+
+	// console.log (`Drawing: ${isDrawing}; Deleting: ${isDeleting} ; ${event.button}`);
+}
+function setNotDrawing(event)
+{
+	isDrawing = false;
+	isDeleting = false;
+
+	// console.log (`Drawing: ${isDrawing}; Deleting: ${isDeleting}`);
+}
+
+// Event listeners:
+
+E_RESET_BUTTON.onclick = resetBoard;
+window.onresize = resizeBoard;
+
+E_DRAWING_BOARD.onmousedown = setDrawing;
+window.onmouseup = setNotDrawing;
+window.onmouseleave = setNotDrawing;
+E_DRAWING_BOARD.addEventListener("contextmenu", function(e){
+	e.preventDefault();
+});
+
+// Instant execution:
+
+redraw(16, 16);
+resizeBoard (I_currentResH, I_currentResV);
 
 // Create an element, with a class
 // lmao = document.createElement('div');

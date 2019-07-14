@@ -17,17 +17,28 @@
 
 <body>
 	<img id="background-img" src="resources/bg.jpg" alt="Background image">
-	<h1>Etch a Sketch</h1>
-	<div id="ui">
-		<div id="settings">
-			<p>Left click to paint</p>
-			<p>Right click to delete</p>
-			
 
-			<button>Reset / Select Size</button>
+	<div id="header">
+
+		<div id="ui">
+			<button id="reset-btn">Reset / Change Size</button>
+
 		</div>
-		<div id="drawing-board"></div>
+		
+
+		<div id="info">
+			<div>
+				<p>Left click to draw</p>
+				<p>Right click to delete</p>
+			</div>
+
+			<h1>Etch a Sketch</h1>
+		</div>
+		
+
 	</div>
+	
+	<div id="drawing-board"></div>
 </body>
 
 <script type="text/javascript" src="scripts.js"></script>
