@@ -177,6 +177,13 @@ function resetBoard()
 	if (!checkInput(newResH)) return false;
 	let newResV = prompt ("New height in pixels:", I_currentResV.toString());
 	if (!checkInput(newResV)) return false;
+
+	// Separate check if one of the numbers is too high (64)
+	if (newResH > 64 || newResV > 64)
+	{
+		alert("Resolution too high! \n64 is the maximum for a side.");
+		return;
+	}
 	redraw(newResH , newResV);
 }
 
